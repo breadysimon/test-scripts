@@ -1,0 +1,20 @@
+String d = prev.getResponseDataAsString();
+char[] s = d.toCharArray();
+String ss="";
+int ident=0;
+String spc="                                                                                                       ";
+for( i =0;i<s.length;i++){
+	if(s[i] == '{' || s[i] == '['){
+		ident++;
+		ss=ss+s[i]+"\n"+spc.substring(0,8*ident);
+	}else if(s [i]=='}' || s[i] == ']'){
+		ident--;
+		ss=ss+"\n"+spc.substring(0,8*ident)+"}";
+	}else if(s[i]==','){
+		ss=ss+",\n"+spc.substring(0,8*ident);
+	}else{
+		ss=ss+s[i];
+	}
+}
+print(ss);
+prev.setResponseData(ss);
